@@ -45,15 +45,14 @@ LMTest <- function(TestDataN, outlistN){
 
 ##PercDiff function calculates difference in expression values for TF perturbation results with two (WT and treatment specific) linear model prediction data as inputs
 PercDiff <- function(TestData_m,TestData_n){
-  TestDataGenes <- LMData[c(214:229),]
-  AllCols <- TestDataGenes$Gene
+  PercentageChange <- c("Averages_Elevated","Average_ambient")
   for (i in names(TestData_m)){
     tempmax <- ((TestData_m[,i] - TestData_n[,i])*100/abs(TestData_n[,i]))
     tempmax <- data.frame(tempmax)
     colnames(tempmax)[1] <- i
-    AllCols <- cbind(AllCols,tempmax)
+    PercentageChange <- cbind(PercentageChange,tempmax)
   }
-  return(AllCols)
+  return(PercentageChange)
 }
 
 ###InSilico Perturbation example for bHLH TF knockout###
@@ -67,7 +66,9 @@ TestDataControlLM <- LMTest(TestData, outListDirected)
 TFGlyma.18G115700Ko <-  TestDataStatic
 TFGlyma.18G115700Ko$TFGlyma.18G115700 <- TFGlyma.18G115700Ko$TFGlyma.18G115700*0
 Testbhlhb1Ko <- LMTest(TFGlyma.18G115700Ko, outListDirected)
-bhlhb1KoPercDiff <- PercDiff(Testbhlhb1Ko,TestDataControlLM)
+bhlhbTFKoPercDiff <- PercDiff(Testbhlhb1Ko,TestDataControlLM)
+write.table(bhlhbTFKoPercDiff,"bhlhbTFKoPercDiff.txt",quote=F,row.names = F, sep="\t")
+
 
 #### END OF GRN MODELING ####
 
