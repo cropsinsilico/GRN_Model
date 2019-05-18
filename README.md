@@ -11,6 +11,7 @@ In order to perform cross validation and check for overfitting, a predicted r-sq
 ## References
 
 Bjorck A. 1996. Numerical methods for least squares problems: Siam.
+Team RC. 2013. R: A language and environment for statistical computing.
 Quan NT. 1988. The prediction sum of squares as a general measure for regression diagnostics. Journal of Business & Economic Statistics, 6: 501-504.
 
 ## Running the model
