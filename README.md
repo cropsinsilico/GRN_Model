@@ -1,4 +1,4 @@
-# Protein translation model
+# Gene regulatory network model
 
 ## Model Description
 
