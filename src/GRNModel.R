@@ -7,10 +7,10 @@ library(BioNet)
 
 #####GRN MODELING USING LINEAR REGRESSION####
 
-GraphEx <- loadNetwork.sif("LeakeyCSoybeanMRRanks0.8Corr0.6.sif", format=c("igraph"), directed = TRUE) ##Load the network .sif file
+GraphEx <- loadNetwork.sif("Input/LeakeyCSoybeanMRRanks0.8Corr0.6.sif", format=c("igraph"), directed = TRUE) ##Load the network .sif file
 NodeList <- V(GraphEx)$name #List the network nodes
 NodeList <- NodeList[grepl("^G", NodeList)]##only picking genes coding for enzymes
-LMData <- read.table("TrainingDataLeafSoy.txt", header = TRUE, sep = "\t") #Load the training data used for GRNmodel
+LMData <- read.table("Input/TrainingDataLeafSoy.txt", header = TRUE, sep = "\t") #Load the training data used for GRNmodel
 TrainingData <- LMData[c(1:213),]
 ### The for loop below generates a list having training data for every enzyme coding gene and basically subsets the training data such that only columns for the enzyme coding gene and the TFs regulaing it are selected. 
 ###So total of 11 datasets are subsetted this way for 11 enzyme coding genes
@@ -67,7 +67,7 @@ TFGlyma.18G115700Ko <-  TestDataStatic
 TFGlyma.18G115700Ko$TFGlyma.18G115700 <- TFGlyma.18G115700Ko$TFGlyma.18G115700*0
 Testbhlhb1Ko <- LMTest(TFGlyma.18G115700Ko, outListDirected)
 bhlhbTFKoPercDiff <- PercDiff(Testbhlhb1Ko,TestDataControlLM)
-write.table(bhlhbTFKoPercDiff,"bhlhbTFKoPercDiff.txt",quote=F,row.names = F, sep="\t")
+write.table(Output/bhlhbTFKoPercDiff,"bhlhbTFKoPercDiff.txt",quote=F,row.names = F, sep="\t")
 
 
 #### END OF GRN MODELING ####
