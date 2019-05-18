@@ -28,13 +28,13 @@ R src/GRNModel.R
 
 Name | Units | Data Type | Description
 ---- | ----- | --------- | -----------
-Gene regulatory network interactions | NA | NA | Interactions that denote equations for linear model (ExpGene1 = w1*ExpGene2 +w2*ExpGene3...)
-Training data | NA | float | Normalized microarray mRNA expression values of soybean leaf tissues under different treatments for training linear model.
+LeakeyCSoybeanMRRanks0.8Corr0.6.sif | NA | NA | Interactions that denote equations for linear model (ExpGene1 = w1*ExpGene2 +w2*ExpGene3...)
+TrainingDataLeafSoy.txt | NA | float | Normalized microarray mRNA expression values of soybean leaf tissues under different treatments for training linear model.
 
 ### Outputs
 
 Name | Units | Data Type | Description
 ---- | ----- | --------- | -----------
-Percentage difference in predicted gene expression | NA | float | Change in predicted gene expression due to a TF knockout or overexpression as compared to control.
+bhlhbTFKoPercDiff.txt | NA | float | Change in predicted gene expression due to a TF knockout or overexpression as compared to control.
 
 
