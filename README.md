@@ -37,6 +37,6 @@ TrainingDataLeafSoy.txt | NA | float | Normalized microarray mRNA expression val
 
 Name | Units | Data Type | Description
 ---- | ----- | --------- | -----------
-bhlhbTFKoPercDiff.txt | NA | float | Change in predicted gene expression due to a TF knockout or overexpression as compared to control.
+bhlhbTFKoPercDiff.txt | NA | float | Percentage change in predicted gene expression due to a TF knockout or overexpression as compared to control.
 
 
