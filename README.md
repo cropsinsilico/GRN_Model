@@ -32,6 +32,7 @@ Name | Units | Data Type | Description
 ---- | ----- | --------- | -----------
 LeakeyCSoybeanMRRanks0.8Corr0.6.sif | NA | NA | Interactions that denote equations for linear model (ExpGene1 = w1*ExpGene2 +w2*ExpGene3...)
 TrainingDataLeafSoy.txt | NA | float | Normalized microarray mRNA expression values of soybean leaf tissues under different treatments for training linear model.
+Input_options.txt | NA | NA | A text file with three charaters specifying input options for GRN model.
 
 ### Output
 
