@@ -64,10 +64,16 @@ TestData <- TestData[-c(1:16),]
 TestDataStatic <- TestData
 TestDataControlLM <- LMTest(TestData, outListDirected)
 TFGlyma.18G115700Ko <-  TestDataStatic
-TFGlyma.18G115700Ko$TFGlyma.18G115700 <- TFGlyma.18G115700Ko$TFGlyma.18G115700*0
-Testbhlhb1Ko <- LMTest(TFGlyma.18G115700Ko, outListDirected)
-bhlhbTFKoPercDiff <- PercDiff(Testbhlhb1Ko,TestDataControlLM)
-write.table(bhlhbTFKoPercDiff,"Output/GRN_Output.txt",quote=F,row.names = F, sep="\t")
+OptionsFile <- read.table("Input_options.txt",nrow=1)
+if (as.character(OptionsFile[1,1]) == "Mutant") {
+ TFGlyma.18G115700Ko[,as.character(OptionsFile[1,2])] <- TFGlyma.18G115700Ko[,as.character(OptionsFile[1,2])]*as.numeric(OptionsFile[1,3])
+ Testbhlhb1Ko <- LMTest(TFGlyma.18G115700Ko, outListDirected)
+ bhlhbTFKoPercDiff <- PercDiff(Testbhlhb1Ko,TestDataControlLM)
+ write.table(bhlhbTFKoPercDiff,"Output/GRN_Output.txt",quote=F,row.names = F, sep="\t")
+} else if (as.character(OptionsFile[1,1]) == "WildType") {
+  bhlhbTFKoPercDiff <- PercDiff(TestDataControlLM,TestDataControlLM)
+  write.table(bhlhbTFKoPercDiff,"Output/GRN_Output.txt",quote=F,row.names = F, sep="\t")
+}
 
 
 #### END OF GRN MODELING ####
