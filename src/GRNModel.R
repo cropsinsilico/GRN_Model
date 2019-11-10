@@ -67,7 +67,7 @@ TFGlyma.18G115700Ko <-  TestDataStatic
 TFGlyma.18G115700Ko$TFGlyma.18G115700 <- TFGlyma.18G115700Ko$TFGlyma.18G115700*0
 Testbhlhb1Ko <- LMTest(TFGlyma.18G115700Ko, outListDirected)
 bhlhbTFKoPercDiff <- PercDiff(Testbhlhb1Ko,TestDataControlLM)
-write.table("Output/GRN_Output.txt",quote=F,row.names = F, sep="\t")
+write.table(bhlhbTFKoPercDiff,"Output/GRN_Output.txt",quote=F,row.names = F, sep="\t")
 
 
 #### END OF GRN MODELING ####
