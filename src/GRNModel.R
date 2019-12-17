@@ -64,7 +64,7 @@ TestData <- TestData[-c(1:16),]
 TestDataStatic <- TestData
 TestDataControlLM <- LMTest(TestData, outListDirected)
 TFGlyma.18G115700Ko <-  TestDataStatic
-OptionsFile <- read.table("Input_options.txt",nrow=1)
+OptionsFile <- read.table("Input/Input_options.txt",nrow=1)
 if (as.character(OptionsFile[1,1]) == "Mutant") {
  TFGlyma.18G115700Ko[,as.character(OptionsFile[1,2])] <- TFGlyma.18G115700Ko[,as.character(OptionsFile[1,2])]*as.numeric(OptionsFile[1,3])
  Testbhlhb1Ko <- LMTest(TFGlyma.18G115700Ko, outListDirected)

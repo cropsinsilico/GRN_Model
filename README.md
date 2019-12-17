@@ -16,6 +16,19 @@ Team RC. 2013. R: A language and environment for statistical computing.
 
 Quan NT. 1988. The prediction sum of squares as a general measure for regression diagnostics. Journal of Business & Economic Statistics, 6: 501-504.
 
+## Installing the dependencies
+
+Issue the following commands from the R command prompt:
+
+```
+install.packages("dplyr")
+install.packages("data.table")
+install.packages("igraph")
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+BiocManager::install("BioNet")
+```
+
 ## Running the model
 
 ```
