@@ -5,6 +5,14 @@ library(data.table)
 library(igraph)
 library(BioNet)
 
+##Deatch and then reattach yggdrasil/zeallot to prevent use of igraph %<-% operator
+if (Sys.getenv("YGG_SUBPROCESS") != "") {
+  detach("package:yggdrasil")
+  detach("package:zeallot")
+  library(yggdrasil)
+  library(zeallot)
+}
+
 ##Crossvalidation and overfitting test for LM model results##
 
 ##Predicted Residual Sum of Squares calculation function 
@@ -64,12 +72,10 @@ PercDiff <- function(TestData_m,TestData_n){
 
 #####GRN MODELING USING LINEAR REGRESSION####
 GRNModel <- function(LMData, OptionsFile) {
-  print(class(LMData))
-  print(class(OptionsFile))
-  print(dim(LMData))
-  print(dim(OptionsFile))
-  # print(sapply(LMData, class))
-  # print(sapply(OptionsFile, class))
+  # Convert lists to data frames
+  if (Sys.getenv("YGG_SUBPROCESS") != "") {
+    OptionsFile <- t(data.frame(unlist(OptionsFile)))
+  }
 
   GraphEx <- loadNetwork.sif("Input/LeakeyCSoybeanMRRanks0.8Corr0.6.sif", format=c("igraph"), directed = TRUE) ##Load the network .sif file
   NodeList <- V(GraphEx)$name #List the network nodes
@@ -106,8 +112,6 @@ GRNModel <- function(LMData, OptionsFile) {
     TFGlyma.18G115700Ko[,as.character(OptionsFile[1,2])] <- TFGlyma.18G115700Ko[,as.character(OptionsFile[1,2])]*as.numeric(OptionsFile[1,3])
     Testbhlhb1Ko <- LMTest(TFGlyma.18G115700Ko, outListDirected)
     bhlhbTFKoPercDiff <- PercDiff(Testbhlhb1Ko,TestDataControlLM)
-    print("here")
-    print(class(bhlhbTFKoPercDiff))
     return(bhlhbTFKoPercDiff)
   } else if (as.character(OptionsFile[1,1]) == "WildType") {
     bhlhbTFKoPercDiff <- PercDiff(TestDataControlLM,TestDataControlLM)
@@ -117,7 +121,9 @@ GRNModel <- function(LMData, OptionsFile) {
 }
 #### END OF GRN MODELING ####
 
-LMData <- read.table("Input/TrainingDataLeafSoy.txt", header = TRUE, sep = "\t") #Load the training data used for GRNmodel
-OptionsFile <- read.table("Input/Input_options.txt",nrow=1)
-results <- GRNModel(LMData, OptionsFile)
-write.table(results,"Output/GRN_Output.txt",quote=F,row.names = F, sep="\t")
+if (Sys.getenv("YGG_SUBPROCESS") == "") {
+  LMData <- read.table("Input/TrainingDataLeafSoy.txt", header = TRUE, sep = "\t") #Load the training data used for GRNmodel
+  OptionsFile <- read.table("Input/Input_options.txt",nrow=1)
+  results <- GRNModel(LMData, OptionsFile)
+  write.table(results,"Output/GRN_Output.txt",quote=F,row.names = F, sep="\t")
+}

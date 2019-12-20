@@ -1,0 +1,11 @@
+model:
+  name: GRNModel
+  language: R
+  args: ./src/GRNModel.R
+  function: GRNModel
+  inputs:
+    - name: LMData
+      recv_converter: pandas
+    - name: OptionsFile
+  outputs:
+    - bhlhbTFKoPercDiff

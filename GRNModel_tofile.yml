@@ -1,0 +1,12 @@
+connections:
+  - input: ./Input/TrainingDataLeafSoy.txt
+    output: GRNModel:LMData
+    filetype: pandas
+    as_array: true
+  - input: ./Input/Input_options.txt
+    output: GRNModel:OptionsFile
+    filetype: table
+  - input: GRNModel:bhlhbTFKoPercDiff
+    output: ./Output/GRN_Output.txt
+    filetype: pandas
+    as_array: true
