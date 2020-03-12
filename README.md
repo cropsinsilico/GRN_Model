@@ -18,7 +18,7 @@ Quan NT. 1988. The prediction sum of squares as a general measure for regression
 
 ## Installing the dependencies
 
-Issue the following commands from the R command prompt:
+Issue the following commands from the R command prompt (make sure you run them one at a time):
 
 ```
 install.packages("dplyr")
