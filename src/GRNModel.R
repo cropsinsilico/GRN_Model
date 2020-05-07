@@ -74,9 +74,17 @@ PercDiff <- function(TestData_m,TestData_n){
 GRNModel <- function(LMData, OptionsFile) {
   # Convert lists to data frames
   if (Sys.getenv("YGG_SUBPROCESS") != "") {
-    OptionsFile <- t(data.frame(unlist(OptionsFile)))
-  }
-
+    #OptionsFile <- t(data.frame(unlist(OptionsFile)))
+    OptionsFile <- read.delim(OptionsFile, header = FALSE)
+    }
+if(OptionsFile[1,2] == 1){
+  genes <- as.character(OptionsFile[1,3])
+  genevals <- OptionsFile[1,4]
+} else {
+  genes <- unlist(strsplit(as.character(OptionsFile[1,3]), ",", fixed = TRUE))
+  genevals <- unlist(strsplit(as.character(OptionsFile[1,4]), ",", fixed = TRUE)) 
+}
+ 
   GraphEx <- loadNetwork.sif("Input/LeakeyCSoybeanMRRanks0.8Corr0.6.sif", format=c("igraph"), directed = TRUE) ##Load the network .sif file
   NodeList <- V(GraphEx)$name #List the network nodes
   NodeList <- NodeList[grepl("^G", NodeList)]##only picking genes coding for enzymes
@@ -109,7 +117,9 @@ GRNModel <- function(LMData, OptionsFile) {
   TestDataControlLM <- LMTest(TestData, outListDirected)
   TFGlyma.18G115700Ko <-  TestDataStatic
   if (as.character(OptionsFile[1,1]) == "Mutant") {
-    TFGlyma.18G115700Ko[,as.character(OptionsFile[1,2])] <- TFGlyma.18G115700Ko[,as.character(OptionsFile[1,2])]*as.numeric(OptionsFile[1,3])
+    for (i in 1:length(genes)){
+    TFGlyma.18G115700Ko[,as.character(genes[i])] <- TFGlyma.18G115700Ko[,as.character(genes[i])]*as.numeric(genevals[i])
+    }
     Testbhlhb1Ko <- LMTest(TFGlyma.18G115700Ko, outListDirected)
     bhlhbTFKoPercDiff <- PercDiff(Testbhlhb1Ko,TestDataControlLM)
     return(bhlhbTFKoPercDiff)
