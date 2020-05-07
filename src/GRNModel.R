@@ -115,17 +115,17 @@ if(OptionsFile[1,2] == 1){
   TestData <- TestData[-c(1:16),]
   TestDataStatic <- TestData
   TestDataControlLM <- LMTest(TestData, outListDirected)
-  TFGlyma.18G115700Ko <-  TestDataStatic
+  TFPerturbation <-  TestDataStatic
   if (as.character(OptionsFile[1,1]) == "Mutant") {
     for (i in 1:length(genes)){
-    TFGlyma.18G115700Ko[,as.character(genes[i])] <- TFGlyma.18G115700Ko[,as.character(genes[i])]*as.numeric(genevals[i])
+    TFPerturbation[,as.character(genes[i])] <- TFPerturbation[,as.character(genes[i])]*as.numeric(genevals[i])
     }
-    Testbhlhb1Ko <- LMTest(TFGlyma.18G115700Ko, outListDirected)
-    bhlhbTFKoPercDiff <- PercDiff(Testbhlhb1Ko,TestDataControlLM)
-    return(bhlhbTFKoPercDiff)
+    TFPerturbationLM <- LMTest(TFPerturbation, outListDirected)
+    ExpPercDiff <- PercDiff(TFPerturbationLM,TestDataControlLM)
+    return(ExpPercDiff)
   } else if (as.character(OptionsFile[1,1]) == "WildType") {
-    bhlhbTFKoPercDiff <- PercDiff(TestDataControlLM,TestDataControlLM)
-    return(bhlhbTFKoPercDiff)
+    ExpPercDiff <- PercDiff(TestDataControlLM,TestDataControlLM)
+    return(ExpPercDiff)
   }
 
 }
