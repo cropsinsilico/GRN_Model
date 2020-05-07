@@ -1,1 +1,1 @@
-Mutant	TFGlyma.18G115700	0
+Mutant  1 TFGlyma.18G115700	0
