@@ -15,7 +15,7 @@ model:
         name: ./Input/Input_options.txt
         filetype: table
   outputs:
-    - name: bhlhbTFKoPercDiff
+    - name: ExpPercDiff
       default_file:
         name: ./Output/GRN_Output.txt
         filetype: pandas
