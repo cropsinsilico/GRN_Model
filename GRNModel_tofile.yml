@@ -6,7 +6,7 @@ connections:
   - input: ./Input/Input_options.txt
     output: GRNModel:OptionsFile
     filetype: table
-  - input: GRNModel:bhlhbTFKoPercDiff
+  - input: GRNModel:ExpPercDiff
     output: ./Output/GRN_Output.txt
     filetype: pandas
     as_array: true
