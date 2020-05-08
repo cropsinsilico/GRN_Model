@@ -74,8 +74,7 @@ PercDiff <- function(TestData_m,TestData_n){
 GRNModel <- function(LMData, OptionsFile) {
   # Convert lists to data frames
   if (Sys.getenv("YGG_SUBPROCESS") != "") {
-    #OptionsFile <- t(data.frame(unlist(OptionsFile)))
-    OptionsFile <- read.delim(OptionsFile, header = FALSE)
+    OptionsFile <- t(data.frame(unlist(OptionsFile)))
     }
 if(OptionsFile[1,2] == 1){
   genes <- as.character(OptionsFile[1,3])
