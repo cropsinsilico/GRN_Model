@@ -63,7 +63,7 @@ Name | Units | Data Type | Description
 ---- | ----- | --------- | -----------
 bhlhbTFKoPercDiff.txt | NA | float | Percentage change in predicted gene expression due to a TF knockout or overexpression as compared to control.
 
-## Additional notes regarding reproducibility of some tables and figures from GRN model output in Kannan et al., 2019 (doi:'https://doi.org/10.1093/insilicoplants/diz008')
+## Additional notes regarding reproducibility of some tables and figures pertaining to the GRN model in Kannan et al., 2019 (doi:'https://doi.org/10.1093/insilicoplants/diz008')
 
 Figure 4 data provided as an OriginPro (https://www.originlab.com/) data analysis and graphing software file 'Figure4.opju' and uses 'Output/GRN_Output.txt' results
 
