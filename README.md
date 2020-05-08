@@ -67,7 +67,7 @@ bhlhbTFKoPercDiff.txt | NA | float | Percentage change in predicted gene express
 
 Figure 4 data provided as an OriginPro (https://www.originlab.com/) data analysis and graphing software file 'Figure4.opju' and uses 'Output/GRN_Output.txt' results
 
-Figure 5 and Supplemental Figure S5 are a Gene Regulatory Networks (GRN) created in 'Cytoscape' (https://cytoscape.org/download.html) visualization tool using interactions/edges between TFs and their predicted Target genes in 'Input/LeakeyCSoybeanMRRanks0.8Corr0.6.sif'
+Figure 5 and Supplemental Figure S5 are Gene Regulatory Networks (GRN) created in 'Cytoscape' (https://cytoscape.org/download.html) visualization tool using interactions/edges between TFs and their predicted Target genes in 'Input/LeakeyCSoybeanMRRanks0.8Corr0.6.sif'
 
 Supplemental Figure S3 consists of linear regression fit between measured mRNA expression of Target genes and predicted mRNA expression of Target genes using the linear model with their adjusted R-squared value. Script used to generate all graphs in this figure are provided in 'Regression plots of target genes in GRN' section of 'src/GRNModel.R' R script.
 
