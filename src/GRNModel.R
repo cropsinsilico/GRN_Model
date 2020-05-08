@@ -4,6 +4,9 @@ library(dplyr)
 library(data.table)
 library(igraph)
 library(BioNet)
+library(grid)
+library(gridExtra)
+library(lattice)
 
 ##Deatch and then reattach yggdrasil/zeallot to prevent use of igraph %<-% operator
 if (Sys.getenv("YGG_SUBPROCESS") != "") {
@@ -46,6 +49,8 @@ model_fit_stats <- function(linear.model) {
                           "Ratio Adj.R2 to R2" = ratio.adjr2.to.r2, "Pred R-squared" = pre.r.sqr, PRESS = press)
   return(round(return.df,3))
 }
+
+
 ###LMTest function predicts gene expression values for an enzyme coding gene based on linear model weights and test data TF expression values.
 LMTest <- function(TestDataN, outlistN){
   predictions <- list()
@@ -106,6 +111,61 @@ if(OptionsFile[1,2] == 1){
   }
   outListDirected <- outlist
   
+  PredictedRSquaredTargets <- list(model_fit_stats(outListDirected[1]$Glyma.10G268500), model_fit_stats(outListDirected[2]$Glyma.19G022900), model_fit_stats(outListDirected[3]$Glyma.07G142700), model_fit_stats(outListDirected[4]$Glyma.08G165500), model_fit_stats(outListDirected[5]$Glyma.10G293500), model_fit_stats(outListDirected[6]$Glyma.16G168000), model_fit_stats(outListDirected[7]$Glyma.19G046800), model_fit_stats(outListDirected[8]$Glyma.11G226900), model_fit_stats(outListDirected[9]$Glyma.19G089100), model_fit_stats(outListDirected[10]$Glyma.17G015600, model_fit_stats(outListDirected[11]$Glyma.08G165400)))
+
+  ##Regression plots of target genes in GRN
+  LMDataWithoutSampleInfo <- LMData[,c(2:495)]
+  LMDataPredictedAll <- LMTest(LMDataWithoutSampleInfo, outListDirected)
+  colnames(LMDataPredictedAll) <- paste(colnames(LMDataPredictedAll), "1", sep = ".")
+  AllDataTrainAndPredicted <- cbind(LMDataWithoutSampleInfo, LMDataPredictedAll)
+
+  RegPlot1 = ggplot(AllDataTrainAndPredicted, aes(x = Glyma.10G268500, y = Glyma.10G268500.1)) + 
+    geom_point() +
+    stat_smooth(method = "lm", col = "red")+labs(title = paste("Adj R2 = ",signif(summary(lm(AllDataTrainAndPredicted$Glyma.10G268500.1~AllDataTrainAndPredicted$Glyma.10G268500))$adj.r.squared, 5)), x = "Glyma.10G268500", y = "Glyma.10G268500_predicted")
+
+  RegPlot2 = ggplot(AllDataTrainAndPredicted, aes(x = Glyma.19G022900, y = Glyma.19G022900.1)) + 
+    geom_point() +
+    stat_smooth(method = "lm", col = "red")+labs(title = paste("Adj R2 = ",signif(summary(lm(AllDataTrainAndPredicted$Glyma.19G022900.1~AllDataTrainAndPredicted$Glyma.19G022900))$adj.r.squared, 5)), x = "Glyma.19G022900", y = "Glyma.19G022900_predicted")
+
+  RegPlot3 = ggplot(AllDataTrainAndPredicted, aes(x = Glyma.07G142700, y = Glyma.07G142700.1)) + 
+    geom_point() +
+    stat_smooth(method = "lm", col = "red")+labs(title = paste("Adj R2 = ",signif(summary(lm(AllDataTrainAndPredicted$Glyma.07G142700.1~AllDataTrainAndPredicted$Glyma.07G142700))$adj.r.squared, 5)), x = "Glyma.07G142700", y = "Glyma.07G142700_predicted")
+
+  RegPlot4 = ggplot(AllDataTrainAndPredicted, aes(x = Glyma.08G165500, y = Glyma.08G165500.1)) + 
+    geom_point() +
+    stat_smooth(method = "lm", col = "red")+labs(title = paste("Adj R2 = ",signif(summary(lm(AllDataTrainAndPredicted$Glyma.08G165500.1~AllDataTrainAndPredicted$Glyma.08G165500))$adj.r.squared, 5)), x = "Glyma.08G165500", y = "Glyma.08G165500_predicted")
+
+  RegPlot5 = ggplot(AllDataTrainAndPredicted, aes(x = Glyma.10G293500, y = Glyma.10G293500.1)) + 
+    geom_point() +
+    stat_smooth(method = "lm", col = "red")+labs(title = paste("Adj R2 = ",signif(summary(lm(AllDataTrainAndPredicted$Glyma.10G293500.1~AllDataTrainAndPredicted$Glyma.10G293500))$adj.r.squared, 5)), x = "Glyma.10G293500", y = "Glyma.10G293500_predicted")
+
+  RegPlot6 = ggplot(AllDataTrainAndPredicted, aes(x = Glyma.16G168000, y = Glyma.16G168000.1)) + 
+    geom_point() +
+    stat_smooth(method = "lm", col = "red")+labs(title = paste("Adj R2 = ",signif(summary(lm(AllDataTrainAndPredicted$Glyma.16G168000.1~AllDataTrainAndPredicted$Glyma.16G168000))$adj.r.squared, 5)), x = "Glyma.16G168000", y = "Glyma.16G168000_predicted")
+
+  RegPlot7 = ggplot(AllDataTrainAndPredicted, aes(x = Glyma.19G046800, y = Glyma.19G046800.1)) + 
+    geom_point() +
+    stat_smooth(method = "lm", col = "red")+labs(title = paste("Adj R2 = ",signif(summary(lm(AllDataTrainAndPredicted$Glyma.19G046800.1~AllDataTrainAndPredicted$Glyma.19G046800))$adj.r.squared, 5)), x = "Glyma.19G046800", y = "Glyma.19G046800_predicted")
+
+  RegPlot8 = ggplot(AllDataTrainAndPredicted, aes(x = Glyma.11G226900, y = Glyma.11G226900.1)) + 
+    geom_point() +
+    stat_smooth(method = "lm", col = "red")+labs(title = paste("Adj R2 = ",signif(summary(lm(AllDataTrainAndPredicted$Glyma.11G226900.1~AllDataTrainAndPredicted$Glyma.11G226900))$adj.r.squared, 5)), x = "Glyma.11G226900", y = "Glyma.11G226900_predicted")
+
+  RegPlot9 = ggplot(AllDataTrainAndPredicted, aes(x = Glyma.19G089100, y = Glyma.19G089100.1)) + 
+    geom_point() +
+    stat_smooth(method = "lm", col = "red")+labs(title = paste("Adj R2 = ",signif(summary(lm(AllDataTrainAndPredicted$Glyma.19G089100.1~AllDataTrainAndPredicted$Glyma.19G089100))$adj.r.squared, 5)), x = "Glyma.19G089100", y = "Glyma.19G089100_predicted")
+
+  RegPlot10 = ggplot(AllDataTrainAndPredicted, aes(x = Glyma.17G015600, y = Glyma.17G015600.1)) + 
+    geom_point() +
+    stat_smooth(method = "lm", col = "red")+labs(title = paste("Adj R2 = ",signif(summary(lm(AllDataTrainAndPredicted$Glyma.17G015600.1~AllDataTrainAndPredicted$Glyma.17G015600))$adj.r.squared, 5)), x = "Glyma.17G015600", y = "Glyma.17G015600_predicted")
+
+  RegPlot11 = ggplot(AllDataTrainAndPredicted, aes(x = Glyma.08G165400, y = Glyma.08G165400.1)) + 
+    geom_point() +
+    stat_smooth(method = "lm", col = "red")+labs(title = paste("Adj R2 = ",signif(summary(lm(AllDataTrainAndPredicted$Glyma.08G165400.1~AllDataTrainAndPredicted$Glyma.08G165400))$adj.r.squared, 5)), x = "Glyma.08G165400", y = "Glyma.08G165400_predicted")
+
+
+  Figure4 <- grid.arrange(RegPlot1, RegPlot2, RegPlot3, RegPlot4, RegPlot5, RegPlot6, RegPlot7, RegPlot8, RegPlot9, RegPlot10, RegPlot11)
+
   ###InSilico Perturbation example for bHLH TF knockout###
   ### bHLHB TF Ko ###
   TestData <- LMData[c(214:229), c(2:495)]
