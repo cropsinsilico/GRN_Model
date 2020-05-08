@@ -63,4 +63,15 @@ Name | Units | Data Type | Description
 ---- | ----- | --------- | -----------
 bhlhbTFKoPercDiff.txt | NA | float | Percentage change in predicted gene expression due to a TF knockout or overexpression as compared to control.
 
+## Additional notes regarding reproducibility of some tables and figures from GRN model output in Kannan et al., 2019 (doi: 'https://doi.org/10.1093/insilicoplants/diz008')
+
+Figure 4 data provided as an OriginPro (https://www.originlab.com/) data analysis and graphing software file 'Figure4.opju'
+
+Figure 5 and Supplemental Figure S5 are a Gene Regulatory Networks (GRN) created in 'Cytoscape' (https://cytoscape.org/download.html) visualization tool using interactions/edges between TFs and their predicted Target genes in 'Input/LeakeyCSoybeanMRRanks0.8Corr0.6.sif'
+
+Supplemental Figure S3 consists of linear regression fit between measured mRNA expression of Target genes and predicted mRNA expression of Target genes using the linear model with their adjusted R-squared value. Script used to generate all graphs in this figure are provided in 'Regression plots of target genes in GRN' section of 'src/GRNModel.R' R script.
+
+Supplemental table S1 consists of predicted R-squared values and least squares linear regression optimized weights for individual 'Target' genes. 'outListDirected' and 'PredictedRSquaredTargets' R objects generated in the 'src/GRNModel.R' R script consists of the least squares optimized weights for individual TFs connected to the targets in the GRN and predicted R-squared values for the linear model of the particular target respectively.
+
+
 
