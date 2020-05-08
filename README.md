@@ -65,7 +65,7 @@ bhlhbTFKoPercDiff.txt | NA | float | Percentage change in predicted gene express
 
 ## Additional notes regarding reproducibility of some tables and figures from GRN model output in Kannan et al., 2019 (doi: 'https://doi.org/10.1093/insilicoplants/diz008')
 
-Figure 4 data provided as an OriginPro (https://www.originlab.com/) data analysis and graphing software file 'Figure4.opju'
+Figure 4 data provided as an OriginPro (https://www.originlab.com/) data analysis and graphing software file 'Figure4.opju' and uses 'Output/GRN_Ouput.txt' results
 
 Figure 5 and Supplemental Figure S5 are a Gene Regulatory Networks (GRN) created in 'Cytoscape' (https://cytoscape.org/download.html) visualization tool using interactions/edges between TFs and their predicted Target genes in 'Input/LeakeyCSoybeanMRRanks0.8Corr0.6.sif'
 
