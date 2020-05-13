@@ -61,7 +61,7 @@ Input_options.txt | NA | NA | A text file with four charaters specifying input o
 
 Name | Units | Data Type | Description
 ---- | ----- | --------- | -----------
-bhlhbTFKoPercDiff.txt | NA | float | Percentage change in predicted gene expression due to a TF knockout or overexpression as compared to control.
+GRN_Ouput_Expected.txt | NA | float | Percentage change in predicted gene expression due to a TF knockout or overexpression as compared to control.
 
 ## Additional notes regarding reproducibility of some tables and figures pertaining to the GRN model in Kannan et al., 2019 (doi:'https://doi.org/10.1093/insilicoplants/diz008')
 
